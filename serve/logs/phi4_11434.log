@@ -1,0 +1,482 @@
+2025/05/15 01:47:28 routes.go:1233: INFO server config env="map[CUDA_VISIBLE_DEVICES:4 GPU_DEVICE_ORDINAL: HIP_VISIBLE_DEVICES: HSA_OVERRIDE_GFX_VERSION: HTTPS_PROXY: HTTP_PROXY: NO_PROXY: OLLAMA_CONTEXT_LENGTH:4096 OLLAMA_DEBUG:false OLLAMA_FLASH_ATTENTION:false OLLAMA_GPU_OVERHEAD:0 OLLAMA_HOST:http://127.0.0.1:11434 OLLAMA_INTEL_GPU:false OLLAMA_KEEP_ALIVE:5m0s OLLAMA_KV_CACHE_TYPE: OLLAMA_LLM_LIBRARY: OLLAMA_LOAD_TIMEOUT:5m0s OLLAMA_MAX_LOADED_MODELS:0 OLLAMA_MAX_QUEUE:512 OLLAMA_MODELS:/root/.ollama/models OLLAMA_MULTIUSER_CACHE:false OLLAMA_NEW_ENGINE:false OLLAMA_NOHISTORY:false OLLAMA_NOPRUNE:false OLLAMA_NUM_PARALLEL:0 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://* vscode-webview://* vscode-file://*] OLLAMA_SCHED_SPREAD:false ROCR_VISIBLE_DEVICES: http_proxy: https_proxy: no_proxy:]"
+time=2025-05-15T01:47:28.849Z level=INFO source=images.go:463 msg="total blobs: 21"
+time=2025-05-15T01:47:28.849Z level=INFO source=images.go:470 msg="total unused blobs removed: 0"
+time=2025-05-15T01:47:28.849Z level=INFO source=routes.go:1300 msg="Listening on 127.0.0.1:11434 (version 0.6.8)"
+time=2025-05-15T01:47:28.850Z level=INFO source=gpu.go:217 msg="looking for compatible GPUs"
+time=2025-05-15T01:47:29.392Z level=INFO source=types.go:130 msg="inference compute" id=GPU-9a90eb9e-b3db-30fb-0c53-91357b6c982c library=cuda variant=v12 compute=8.6 driver=12.4 name="NVIDIA A40" total="44.3 GiB" available="44.1 GiB"
+time=2025-05-15T01:47:30.858Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+time=2025-05-15T01:47:31.130Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+time=2025-05-15T01:47:31.148Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+time=2025-05-15T01:47:31.149Z level=WARN source=ggml.go:152 msg="key not found" key=phi3.vision.block_count default=0
+time=2025-05-15T01:47:31.149Z level=WARN source=ggml.go:152 msg="key not found" key=phi3.attention.key_length default=128
+time=2025-05-15T01:47:31.149Z level=WARN source=ggml.go:152 msg="key not found" key=phi3.attention.value_length default=128
+time=2025-05-15T01:47:31.150Z level=INFO source=sched.go:754 msg="new model will fit in available VRAM in single GPU, loading" model=/root/.ollama/models/blobs/sha256-fd7b6731c33c57f61767612f56517460ec2d1e2e5a3f0163e0eb3d8d8cb5df20 gpu=GPU-9a90eb9e-b3db-30fb-0c53-91357b6c982c parallel=2 available=47327281152 required="11.5 GiB"
+time=2025-05-15T01:47:31.413Z level=INFO source=server.go:106 msg="system memory" total="754.4 GiB" free="424.8 GiB" free_swap="4.0 KiB"
+time=2025-05-15T01:47:31.413Z level=WARN source=ggml.go:152 msg="key not found" key=phi3.vision.block_count default=0
+time=2025-05-15T01:47:31.413Z level=WARN source=ggml.go:152 msg="key not found" key=phi3.attention.key_length default=128
+time=2025-05-15T01:47:31.413Z level=WARN source=ggml.go:152 msg="key not found" key=phi3.attention.value_length default=128
+time=2025-05-15T01:47:31.414Z level=INFO source=server.go:139 msg=offload library=cuda layers.requested=-1 layers.model=41 layers.offload=41 layers.split="" memory.available="[44.1 GiB]" memory.gpu_overhead="0 B" memory.required.full="11.5 GiB" memory.required.partial="11.5 GiB" memory.required.kv="1.6 GiB" memory.required.allocations="[11.5 GiB]" memory.weights.total="8.2 GiB" memory.weights.repeating="7.8 GiB" memory.weights.nonrepeating="402.0 MiB" memory.graph.full="1.0 GiB" memory.graph.partial="1.0 GiB"
+llama_model_loader: loaded meta data with 33 key-value pairs and 243 tensors from /root/.ollama/models/blobs/sha256-fd7b6731c33c57f61767612f56517460ec2d1e2e5a3f0163e0eb3d8d8cb5df20 (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = phi3
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = Phi 4
+llama_model_loader: - kv   3:                            general.version str              = 4
+llama_model_loader: - kv   4:                       general.organization str              = Microsoft
+llama_model_loader: - kv   5:                           general.basename str              = phi
+llama_model_loader: - kv   6:                         general.size_label str              = 15B
+llama_model_loader: - kv   7:                            general.license str              = mit
+llama_model_loader: - kv   8:                       general.license.link str              = https://huggingface.co/microsoft/phi-...
+llama_model_loader: - kv   9:                               general.tags arr[str,7]       = ["phi", "nlp", "math", "code", "chat"...
+llama_model_loader: - kv  10:                          general.languages arr[str,1]       = ["en"]
+llama_model_loader: - kv  11:                        phi3.context_length u32              = 16384
+llama_model_loader: - kv  12:  phi3.rope.scaling.original_context_length u32              = 16384
+llama_model_loader: - kv  13:                      phi3.embedding_length u32              = 5120
+llama_model_loader: - kv  14:                   phi3.feed_forward_length u32              = 17920
+llama_model_loader: - kv  15:                           phi3.block_count u32              = 40
+llama_model_loader: - kv  16:                  phi3.attention.head_count u32              = 40
+llama_model_loader: - kv  17:               phi3.attention.head_count_kv u32              = 10
+llama_model_loader: - kv  18:      phi3.attention.layer_norm_rms_epsilon f32              = 0.000010
+llama_model_loader: - kv  19:                  phi3.rope.dimension_count u32              = 128
+llama_model_loader: - kv  20:                        phi3.rope.freq_base f32              = 250000.000000
+llama_model_loader: - kv  21:                          general.file_type u32              = 15
+llama_model_loader: - kv  22:              phi3.attention.sliding_window u32              = 131072
+llama_model_loader: - kv  23:                       tokenizer.ggml.model str              = gpt2
+llama_model_loader: - kv  24:                         tokenizer.ggml.pre str              = dbrx
+llama_model_loader: - kv  25:                      tokenizer.ggml.tokens arr[str,100352]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+llama_model_loader: - kv  26:                  tokenizer.ggml.token_type arr[i32,100352]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+llama_model_loader: - kv  27:                      tokenizer.ggml.merges arr[str,100000]  = ["Ġ Ġ", "ĠĠ ĠĠ", "i n", "Ġ t",...
+llama_model_loader: - kv  28:                tokenizer.ggml.bos_token_id u32              = 100257
+llama_model_loader: - kv  29:                tokenizer.ggml.eos_token_id u32              = 100257
+llama_model_loader: - kv  30:            tokenizer.ggml.padding_token_id u32              = 100257
+llama_model_loader: - kv  31:                    tokenizer.chat_template str              = {% for message in messages %}{% if (m...
+llama_model_loader: - kv  32:               general.quantization_version u32              = 2
+llama_model_loader: - type  f32:   81 tensors
+llama_model_loader: - type q4_K:  101 tensors
+llama_model_loader: - type q5_K:   40 tensors
+llama_model_loader: - type q6_K:   21 tensors
+print_info: file format = GGUF V3 (latest)
+print_info: file type   = Q4_K - Medium
+print_info: file size   = 8.43 GiB (4.94 BPW) 
+load: special tokens cache size = 96
+load: token to piece cache size = 0.6151 MB
+print_info: arch             = phi3
+print_info: vocab_only       = 1
+print_info: model type       = ?B
+print_info: model params     = 14.66 B
+print_info: general.name     = Phi 4
+print_info: vocab type       = BPE
+print_info: n_vocab          = 100352
+print_info: n_merges         = 100000
+print_info: BOS token        = 100257 '<|endoftext|>'
+print_info: EOS token        = 100257 '<|endoftext|>'
+print_info: EOT token        = 100265 '<|im_end|>'
+print_info: PAD token        = 100257 '<|endoftext|>'
+print_info: LF token         = 198 'Ċ'
+print_info: FIM PRE token    = 100258 '<|fim_prefix|>'
+print_info: FIM SUF token    = 100260 '<|fim_suffix|>'
+print_info: FIM MID token    = 100259 '<|fim_middle|>'
+print_info: EOG token        = 100257 '<|endoftext|>'
+print_info: EOG token        = 100265 '<|im_end|>'
+print_info: max token length = 256
+llama_model_load: vocab only - skipping tensors
+time=2025-05-15T01:47:31.604Z level=INFO source=server.go:410 msg="starting llama server" cmd="/usr/local/bin/ollama runner --model /root/.ollama/models/blobs/sha256-fd7b6731c33c57f61767612f56517460ec2d1e2e5a3f0163e0eb3d8d8cb5df20 --ctx-size 8192 --batch-size 512 --n-gpu-layers 41 --threads 40 --parallel 2 --port 43109"
+time=2025-05-15T01:47:31.605Z level=INFO source=sched.go:452 msg="loaded runners" count=1
+time=2025-05-15T01:47:31.605Z level=INFO source=server.go:589 msg="waiting for llama runner to start responding"
+time=2025-05-15T01:47:31.606Z level=INFO source=server.go:623 msg="waiting for server to become available" status="llm server not responding"
+time=2025-05-15T01:47:31.623Z level=INFO source=runner.go:853 msg="starting go runner"
+load_backend: loaded CPU backend from /usr/local/lib/ollama/libggml-cpu-skylakex.so
+ggml_cuda_init: GGML_CUDA_FORCE_MMQ:    no
+ggml_cuda_init: GGML_CUDA_FORCE_CUBLAS: no
+ggml_cuda_init: found 1 CUDA devices:
+  Device 0: NVIDIA A40, compute capability 8.6, VMM: yes
+load_backend: loaded CUDA backend from /usr/local/lib/ollama/cuda_v12/libggml-cuda.so
+time=2025-05-15T01:47:32.004Z level=INFO source=ggml.go:103 msg=system CPU.0.SSE3=1 CPU.0.SSSE3=1 CPU.0.AVX=1 CPU.0.AVX2=1 CPU.0.F16C=1 CPU.0.FMA=1 CPU.0.BMI2=1 CPU.0.AVX512=1 CPU.0.LLAMAFILE=1 CPU.1.LLAMAFILE=1 CUDA.0.ARCHS=500,600,610,700,750,800,860,870,890,900,1200 CUDA.0.USE_GRAPHS=1 CUDA.0.PEER_MAX_BATCH_SIZE=128 compiler=cgo(gcc)
+time=2025-05-15T01:47:32.005Z level=INFO source=runner.go:913 msg="Server listening on 127.0.0.1:43109"
+time=2025-05-15T01:47:32.108Z level=INFO source=server.go:623 msg="waiting for server to become available" status="llm server loading model"
+llama_model_load_from_file_impl: using device CUDA0 (NVIDIA A40) - 45134 MiB free
+llama_model_loader: loaded meta data with 33 key-value pairs and 243 tensors from /root/.ollama/models/blobs/sha256-fd7b6731c33c57f61767612f56517460ec2d1e2e5a3f0163e0eb3d8d8cb5df20 (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = phi3
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = Phi 4
+llama_model_loader: - kv   3:                            general.version str              = 4
+llama_model_loader: - kv   4:                       general.organization str              = Microsoft
+llama_model_loader: - kv   5:                           general.basename str              = phi
+llama_model_loader: - kv   6:                         general.size_label str              = 15B
+llama_model_loader: - kv   7:                            general.license str              = mit
+llama_model_loader: - kv   8:                       general.license.link str              = https://huggingface.co/microsoft/phi-...
+llama_model_loader: - kv   9:                               general.tags arr[str,7]       = ["phi", "nlp", "math", "code", "chat"...
+llama_model_loader: - kv  10:                          general.languages arr[str,1]       = ["en"]
+llama_model_loader: - kv  11:                        phi3.context_length u32              = 16384
+llama_model_loader: - kv  12:  phi3.rope.scaling.original_context_length u32              = 16384
+llama_model_loader: - kv  13:                      phi3.embedding_length u32              = 5120
+llama_model_loader: - kv  14:                   phi3.feed_forward_length u32              = 17920
+llama_model_loader: - kv  15:                           phi3.block_count u32              = 40
+llama_model_loader: - kv  16:                  phi3.attention.head_count u32              = 40
+llama_model_loader: - kv  17:               phi3.attention.head_count_kv u32              = 10
+llama_model_loader: - kv  18:      phi3.attention.layer_norm_rms_epsilon f32              = 0.000010
+llama_model_loader: - kv  19:                  phi3.rope.dimension_count u32              = 128
+llama_model_loader: - kv  20:                        phi3.rope.freq_base f32              = 250000.000000
+llama_model_loader: - kv  21:                          general.file_type u32              = 15
+llama_model_loader: - kv  22:              phi3.attention.sliding_window u32              = 131072
+llama_model_loader: - kv  23:                       tokenizer.ggml.model str              = gpt2
+llama_model_loader: - kv  24:                         tokenizer.ggml.pre str              = dbrx
+llama_model_loader: - kv  25:                      tokenizer.ggml.tokens arr[str,100352]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+llama_model_loader: - kv  26:                  tokenizer.ggml.token_type arr[i32,100352]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+llama_model_loader: - kv  27:                      tokenizer.ggml.merges arr[str,100000]  = ["Ġ Ġ", "ĠĠ ĠĠ", "i n", "Ġ t",...
+llama_model_loader: - kv  28:                tokenizer.ggml.bos_token_id u32              = 100257
+llama_model_loader: - kv  29:                tokenizer.ggml.eos_token_id u32              = 100257
+llama_model_loader: - kv  30:            tokenizer.ggml.padding_token_id u32              = 100257
+llama_model_loader: - kv  31:                    tokenizer.chat_template str              = {% for message in messages %}{% if (m...
+llama_model_loader: - kv  32:               general.quantization_version u32              = 2
+llama_model_loader: - type  f32:   81 tensors
+llama_model_loader: - type q4_K:  101 tensors
+llama_model_loader: - type q5_K:   40 tensors
+llama_model_loader: - type q6_K:   21 tensors
+print_info: file format = GGUF V3 (latest)
+print_info: file type   = Q4_K - Medium
+print_info: file size   = 8.43 GiB (4.94 BPW) 
+load: special tokens cache size = 96
+load: token to piece cache size = 0.6151 MB
+print_info: arch             = phi3
+print_info: vocab_only       = 0
+print_info: n_ctx_train      = 16384
+print_info: n_embd           = 5120
+print_info: n_layer          = 40
+print_info: n_head           = 40
+print_info: n_head_kv        = 10
+print_info: n_rot            = 128
+print_info: n_swa            = 131072
+print_info: n_swa_pattern    = 1
+print_info: n_embd_head_k    = 128
+print_info: n_embd_head_v    = 128
+print_info: n_gqa            = 4
+print_info: n_embd_k_gqa     = 1280
+print_info: n_embd_v_gqa     = 1280
+print_info: f_norm_eps       = 0.0e+00
+print_info: f_norm_rms_eps   = 1.0e-05
+print_info: f_clamp_kqv      = 0.0e+00
+print_info: f_max_alibi_bias = 0.0e+00
+print_info: f_logit_scale    = 0.0e+00
+print_info: f_attn_scale     = 0.0e+00
+print_info: n_ff             = 17920
+print_info: n_expert         = 0
+print_info: n_expert_used    = 0
+print_info: causal attn      = 1
+print_info: pooling type     = 0
+print_info: rope type        = 2
+print_info: rope scaling     = linear
+print_info: freq_base_train  = 250000.0
+print_info: freq_scale_train = 1
+print_info: n_ctx_orig_yarn  = 16384
+print_info: rope_finetuned   = unknown
+print_info: ssm_d_conv       = 0
+print_info: ssm_d_inner      = 0
+print_info: ssm_d_state      = 0
+print_info: ssm_dt_rank      = 0
+print_info: ssm_dt_b_c_rms   = 0
+print_info: model type       = 14B
+print_info: model params     = 14.66 B
+print_info: general.name     = Phi 4
+print_info: vocab type       = BPE
+print_info: n_vocab          = 100352
+print_info: n_merges         = 100000
+print_info: BOS token        = 100257 '<|endoftext|>'
+print_info: EOS token        = 100257 '<|endoftext|>'
+print_info: EOT token        = 100265 '<|im_end|>'
+print_info: PAD token        = 100257 '<|endoftext|>'
+print_info: LF token         = 198 'Ċ'
+print_info: FIM PRE token    = 100258 '<|fim_prefix|>'
+print_info: FIM SUF token    = 100260 '<|fim_suffix|>'
+print_info: FIM MID token    = 100259 '<|fim_middle|>'
+print_info: EOG token        = 100257 '<|endoftext|>'
+print_info: EOG token        = 100265 '<|im_end|>'
+print_info: max token length = 256
+load_tensors: loading model tensors, this can take a while... (mmap = true)
+load_tensors: offloading 40 repeating layers to GPU
+load_tensors: offloading output layer to GPU
+load_tensors: offloaded 41/41 layers to GPU
+load_tensors:        CUDA0 model buffer size =  8354.71 MiB
+load_tensors:   CPU_Mapped model buffer size =   275.62 MiB
+llama_context: constructing llama_context
+llama_context: n_seq_max     = 2
+llama_context: n_ctx         = 8192
+llama_context: n_ctx_per_seq = 4096
+llama_context: n_batch       = 1024
+llama_context: n_ubatch      = 512
+llama_context: causal_attn   = 1
+llama_context: flash_attn    = 0
+llama_context: freq_base     = 250000.0
+llama_context: freq_scale    = 1
+llama_context: n_ctx_per_seq (4096) < n_ctx_train (16384) -- the full capacity of the model will not be utilized
+llama_context:  CUDA_Host  output buffer size =     0.80 MiB
+init: kv_size = 8192, offload = 1, type_k = 'f16', type_v = 'f16', n_layer = 40, can_shift = 1
+init:      CUDA0 KV buffer size =  1600.00 MiB
+llama_context: KV self size  = 1600.00 MiB, K (f16):  800.00 MiB, V (f16):  800.00 MiB
+llama_context:      CUDA0 compute buffer size =   701.00 MiB
+llama_context:  CUDA_Host compute buffer size =    26.01 MiB
+llama_context: graph nodes  = 1686
+llama_context: graph splits = 2
+time=2025-05-15T01:47:40.141Z level=INFO source=server.go:628 msg="llama runner started in 8.54 seconds"
+[GIN] 2025/05/15 - 01:47:40 | 200 |   9.29850606s |       127.0.0.1 | POST     "/api/generate"
+time=2025-05-15T03:46:59.689Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:01 | 200 |  1.406791777s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:01.101Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:02 | 200 |  1.766774104s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:02.876Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:04 | 200 |  1.373852595s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:04.258Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:06 | 200 |  2.033972962s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:06.300Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:08 | 200 |  1.854404636s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:08.164Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:09 | 200 |  1.659695835s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:09.829Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:11 | 200 |  1.433964703s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:11.270Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:12 | 200 |  1.399372173s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:12.678Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:14 | 200 |  1.889494737s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:14.581Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:16 | 200 |  1.760803199s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:16.348Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:17 | 200 |  1.067158287s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:17.422Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:18 | 200 |  1.319932255s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:18.747Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:20 | 200 |  1.736249798s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:20.491Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:22 | 200 |  1.901816088s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:22.400Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:23 | 200 |  1.624091056s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:24.032Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:25 | 200 |  1.168345498s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:25.208Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:27 | 200 |  1.941723093s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:27.156Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:28 | 200 |  1.424073544s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:28.588Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:30 | 200 |  1.755116284s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:30.352Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:31 | 200 |  1.694906342s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:32.053Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:33 | 200 |   1.61545517s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:33.656Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:35 | 200 |  1.477968542s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:35.163Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:36 | 200 |  1.564936729s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:36.741Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:37 | 200 |  851.070498ms |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:37.604Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:38 | 200 |  1.115093243s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:38.725Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:39 | 200 |  910.361831ms |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:39.645Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:40 | 200 |  1.103934269s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:40.756Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:42 | 200 |   2.03153339s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:42.797Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:44 | 200 |  1.300575447s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:44.097Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:45 | 200 |   1.20191511s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:45.318Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:46 | 200 |  1.257708651s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:46.585Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:48 | 200 |  1.689011841s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:48.281Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:50 | 200 |    1.9271394s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:50.216Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:52 | 200 |  1.957003946s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:52.182Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:54 | 200 |  1.999882022s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:54.157Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:55 | 200 |  1.630527084s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:55.830Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:57 | 200 |  1.532665639s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:57.370Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:47:59 | 200 |   1.72390201s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:47:59.103Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:00 | 200 |  1.715842494s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:00.827Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:02 | 200 |  2.138040074s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:02.972Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:04 | 200 |  1.431604508s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:04.411Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:05 | 200 |  1.181514723s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:05.601Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:07 | 200 |    1.4499219s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:07.049Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:08 | 200 |  1.205934857s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:08.275Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:09 | 200 |  1.470150814s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:09.754Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:11 | 200 |  1.371064909s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:11.136Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:12 | 200 |   1.69459219s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:12.839Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:14 | 200 |  1.721522939s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:14.545Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:15 | 200 |  1.196704546s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:15.773Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:17 | 200 |  2.050733252s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:17.831Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:18 | 200 |  1.189848549s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:19.006Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:19 | 200 |  981.214566ms |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:19.996Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:21 | 200 |  1.229859645s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:21.256Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:22 | 200 |  1.604348207s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:22.869Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:24 | 200 |  1.742952791s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:24.589Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:26 | 200 |  1.964477097s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:26.591Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:27 | 200 |  1.123260208s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:27.723Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:29 | 200 |  1.543374411s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:29.273Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:30 | 200 |  1.725952692s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:31.006Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:31 | 200 |  817.970489ms |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:31.832Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:33 | 200 |  1.734009466s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:33.572Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:35 | 200 |   1.92623429s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:35.506Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:37 | 200 |  2.070907319s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:37.587Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:39 | 200 |  1.544861244s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:39.139Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:40 | 200 |   1.21772974s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T03:48:40.364Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 03:48:41 | 200 |  1.342032171s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:23.930Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:26 | 200 |  2.815413301s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:26.777Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:28 | 200 |  1.437799104s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:28.213Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:29 | 200 |  1.752454327s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:29.989Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:32 | 200 |    2.1908358s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:32.188Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:34 | 200 |  2.249389672s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:34.440Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:36 | 200 |  1.944388933s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:36.398Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:38 | 200 |  1.708207085s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:38.081Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:39 | 200 |  1.594808522s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:39.716Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:40 | 200 |  1.204902142s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:40.928Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:42 | 200 |  1.338902339s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:42.274Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:44 | 200 |  2.041984618s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:44.319Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:46 | 200 |  1.852476874s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:46.180Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:48 | 200 |  2.544978731s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:48.734Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:50 | 200 |  2.231439467s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:50.977Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:52 | 200 |   1.62843791s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:52.606Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:54 | 200 |  1.574532089s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:54.188Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:56 | 200 |  1.956014989s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:56.151Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:57 | 200 |  1.644230691s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:57.802Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:51:59 | 200 |  1.329082397s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:51:59.139Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:00 | 200 |  1.784310486s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:00.931Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:02 | 200 |  1.779462831s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:02.720Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:04 | 200 |  1.513472638s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:04.239Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:05 | 200 |  989.407162ms |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:05.235Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:06 | 200 |  1.224583617s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:06.467Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:07 | 200 |  1.436207885s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:07.878Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:09 | 200 |  1.971319629s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:09.891Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:12 | 200 |  2.264999296s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:12.164Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:13 | 200 |  1.414567648s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:13.588Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:14 | 200 |  1.064940406s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:14.660Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:15 | 200 |  1.203033533s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:15.870Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:17 | 200 |  1.368172363s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:17.246Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:18 | 200 |  1.194798886s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:18.448Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:19 | 200 |  1.109124022s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:19.568Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:20 | 200 |  1.155930994s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:20.730Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:22 | 200 |  1.515031084s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:22.252Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:24 | 200 |  2.007355814s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:24.268Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:25 | 200 |  1.209297128s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:25.484Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:26 | 200 |  1.359189309s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:26.853Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:28 | 200 |  1.649795935s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:28.511Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:29 | 200 |  1.040147178s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:29.558Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:31 | 200 |  2.056267912s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:31.622Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:33 | 200 |   1.68449127s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:33.294Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:34 | 200 |  1.136572944s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:34.427Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:35 | 200 |  1.407601973s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:35.875Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:37 | 200 |  1.788654075s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:37.673Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:39 | 200 |  1.916506084s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:39.598Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:40 | 200 |   1.32119649s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:40.929Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:42 | 200 |  1.864849272s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:42.802Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:44 | 200 |   1.52829277s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:44.337Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:46 | 200 |  1.873641606s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:46.215Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:47 | 200 |  1.617076311s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:47.837Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:49 | 200 |  1.667406308s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:49.509Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:50 | 200 |  989.594544ms |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:50.505Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:51 | 200 |  1.004279713s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:51.525Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:52 | 200 |  1.269756809s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:52.772Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:54 | 200 |  1.647230532s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:54.458Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:56 | 200 |  1.803761354s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:56.272Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:57 | 200 |  1.692558963s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:57.973Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:52:58 | 200 |  1.002331011s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:52:58.981Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:53:00 | 200 |  1.567631181s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:53:00.557Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:53:01 | 200 |    1.0281694s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:53:01.597Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:53:02 | 200 |  1.422909156s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:53:03.028Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:53:04 | 200 |  1.520402544s |       127.0.0.1 | POST     "/api/chat"
+time=2025-05-15T08:53:04.557Z level=WARN source=ggml.go:152 msg="key not found" key=general.alignment default=32
+[GIN] 2025/05/15 - 08:53:05 | 200 |  1.194494255s |       127.0.0.1 | POST     "/api/chat"
