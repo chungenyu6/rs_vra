@@ -37,7 +37,7 @@ NUM_QUESTIONS = 100 # range from 1 - 100 (for each type) # TODO
 IMG_FOLDER = "/home/vol-llm/datasets/ISR/VRSBench/validation/Images_val"
 LABEL_FILE = "eval/vrsbench_vqa_5q/label.json"
 RESULTS_FILE = "results/vrsbench_vqa_5q/ans_agent.json"
-MAX_REFLEXION_ITERS = 3 # TODO
+MAX_REFLEXION_ITERS = 1 # TODO
 
 
 # Each question type has 100 examples (question_id lists)

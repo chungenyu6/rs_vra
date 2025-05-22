@@ -11,8 +11,8 @@ declare -A model_port_gpu=(
   # [granite3.2:8b]="11437:1" # 8 GB RAM
   # [granite3.2:8b-instruct-fp16]="11438:0" # 16 GB RAM
   # [qwen2.5:7b-instruct-fp16]="11438:5" # 16 GB RAM
-  [qwq]="11439:5" # 20 GB RAM
-  [phi4]="11434:4" # 16 GB RAM
+  [qwq]="11439:7" # 20 GB RAM
+  # [phi4]="11434:5" # 16 GB RAM
   
 )
 

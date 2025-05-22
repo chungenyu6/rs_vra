@@ -26,7 +26,7 @@ from logger import logger
 # TODO: change parameters
 WANDB_ENTITY = "chungenyu6-uwf"
 WANDB_PROJECT = "vrsbench_vqa_5q"
-WANDB_NAME = "agent-r3.1-rm" # geochat # agent-r3 # llava1.5 # TESTING
+WANDB_NAME = "agent-r1.1-rm" # geochat # agent-r3 # llava1.5 # TESTING
 
 OLLAMA_BASE_URL = "127.0.0.1:11434"
 OLLAMA_MODEL = "phi4"
