@@ -16,7 +16,8 @@ from react_agent.tools import TOOLS, vision_model
 import react_agent.utils as utils
 import react_agent.call_geochat as call_geochat
 
-GRAPH_NAME = "GeoChat-Reflexion-React" # TESTING
+# GRAPH_NAME = "GeoChat-Reflexion-React" # TESTING
+GRAPH_NAME = "LLaVA1.5-Reflexion-React" # TESTING
 
 async def get_rs_caption(state: State) -> Dict[str, List[AIMessage]]:
     """rs_captioner node: Ask RS-VLM to generate a caption."""

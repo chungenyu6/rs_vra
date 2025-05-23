@@ -44,7 +44,7 @@ REVISOR_USR_PROMPT = """\
 
 # Spokesman: answer the user's question based on the whole conversation
 SPOKESMAN_SYS_PROMPT = """\
-You are a helpful AI assistant that good at answering questions. 
+You are a helpful AI assistant that good at answering questions. Directly answer with 'Yes' or 'No' to the user's question without output your thinking process.
 
 Current time: {time}
 """

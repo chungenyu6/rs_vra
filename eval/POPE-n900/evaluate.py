@@ -4,11 +4,11 @@ This script is to evaluate on benchmark POPE-n900.
 Usage:
 - Navigate to the root directory of the project
 - Run the following command:
-    python ./eval/POPE-n900/evaluate.py --subset random --sample 1 --model llava1.5 --wandb False
-- The results will be saved in the results/POPE-n900/MODEL/SUBSET/SAMPLE directory
-- The logs will be saved in the results/POPE-n900/MODEL/SUBSET/SAMPLE/log_qid%d.json file
-- The answers will be saved in the results/POPE-n900/MODEL/SUBSET/SAMPLE/answer.json file
-- The evaluation results will be saved in the results/POPE-n900/MODEL/SUBSET/SAMPLE/eval_result.txt file
+    python ./eval/POPE-n900/evaluate.py --subset random --sample 1 --model llava1.5 --version v1 --max_reflexion_iters 1 --wandb False
+- The results will be saved in the results/POPE-n900/MODEL/VERSION/SUBSET/SAMPLE directory
+- The logs will be saved in the results/POPE-n900/MODEL/VERSION/SUBSET/SAMPLE/log_qid%d.json file
+- The answers will be saved in the results/POPE-n900/MODEL/VERSION/SUBSET/SAMPLE/answer.json file
+- The evaluation results will be saved in the results/POPE-n900/MODEL/VERSION/SUBSET/SAMPLE/eval_result.txt file
 """
 
 ######################################################################################
@@ -43,7 +43,7 @@ async def evaluate():
     init_login()
 
     # Load image and question from POPE-n900
-    output_folder = f"./results/POPE-n900/{args.model}/{args.subset}/sam{str(args.sample)}/"
+    output_folder = f"./results/POPE-n900/{args.model}/{args.version}/{args.subset}/sam{str(args.sample)}/"
     question_file = f"./datasets/POPE-n900/json/coco_50_pope_{args.subset}.json"    # benchmark questions
     answer_file = output_folder + "answer.json"                                     # predictions
     log_file = output_folder + "log_qid%d.json"                                     # filename dynamically changes with question id
@@ -95,6 +95,7 @@ async def evaluate():
             "bench_label": bench_label,
         }
 
+        # TODO: add more models here
         # Model answers the benchmark question
         if args.model == "agent":
             model_answer = exec_model.query_agent(args, bench_query, img_path)

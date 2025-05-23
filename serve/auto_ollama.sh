@@ -13,8 +13,8 @@ declare -A model_port_gpu=(
   # [qwen2.5:7b-instruct-fp16]="11438:5" # 16 GB RAM
   [qwq]="11439:7" # 20 GB RAM
   # [phi4]="11434:5" # 16 GB RAM
-  [gemma3:12b-it-fp16]="11440:7" # 24 GB RAM
-  [mistral-small3.1:24b-instruct-2503-q8_0]="11441:7" # 26 GB RAM
+  # [gemma3:12b-it-fp16]="11440:7" # 24 GB RAM
+  # [mistral-small3.1:24b-instruct-2503-q8_0]="11441:7" # 26 GB RAM
 )
 
 # =========================
