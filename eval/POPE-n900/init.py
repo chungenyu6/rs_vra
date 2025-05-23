@@ -27,7 +27,9 @@ def init_arg():
     parser = argparse.ArgumentParser()
     parser.add_argument("--subset", default="random", required=True, type=str, help="Subset of POPE benchmark, only accepted values: random, popular, adversarial")
     parser.add_argument("--sample", default=1, required=False, type=int, help="Number of benchmark samples to test (1 - 300 samples)")
-    parser.add_argument("--model", required=True, type=str, help="Model name")
+    parser.add_argument("--model", required=True, type=str, help="Model name, only accepted values: agent (ours), llava1.5")
+    parser.add_argument("--max_reflexion_iters", default=1, required=False, type=int, help="Maximum number of reflexion iterations")
+    parser.add_argument("--version", default="v1", required=False, type=str, help="Version of the model")
     parser.add_argument("--wandb", default=False, required=False, type=lambda x: str(x).lower() == 'true', help="Set to True to log to wandb")
     args = parser.parse_args()
 
@@ -51,9 +53,13 @@ def init_login():
             raise ValueError("WANDB_API_KEY not found in environment variables")
         wandb.login(key=wandb_api_key)
         wandb.init(
-            project="POPE-n900",        
+            project="POPE-n900",
             entity="chungenyu6-uwf",                        
             name=args.model,
+            config={
+                "version": "vra-rm1-vm1-aa1-ri1", # TODO: change to args.version later
+                "subset": args.subset,
+            }
         )
     
     # Login huggingface

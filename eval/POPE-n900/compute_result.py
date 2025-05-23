@@ -101,7 +101,6 @@ def compute_result(args, argw, output_folder, ans_file, label_file, tortureList)
     acc *= 100
 
     # Print results
-    # FIX: change to logger.info
     logger.info("FP samples list (qid): %s", FP_list)
     logger.info("FN samples list (qid): %s", FN_list)
     logger.info("Toruture samples list (qid): %s", tortureList)

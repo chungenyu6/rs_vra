@@ -5,13 +5,15 @@ Note:
 - FOLDER_PATH should be relative to the root directory of the project
 """
 
+######################################################################################
+# Standard library imports
 import logging
 import sys
 import os
 from datetime import datetime
+######################################################################################
 
-# TODO: change parameters
-FOLDER_PATH = "eval/vrsbench_vqa_5q"
+FOLDER_PATH = "eval/POPE-n900" # TODO: change parameters if needed
 
 # Set up logging
 os.makedirs(f"{FOLDER_PATH}/logs", exist_ok=True)

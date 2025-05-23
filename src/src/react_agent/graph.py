@@ -16,15 +16,14 @@ from react_agent.tools import TOOLS, vision_model
 import react_agent.utils as utils
 import react_agent.call_geochat as call_geochat
 
-GRAPH_NAME = "GeoChat-Reflexion-React"
+GRAPH_NAME = "GeoChat-Reflexion-React" # TESTING
 
 async def get_rs_caption(state: State) -> Dict[str, List[AIMessage]]:
     """rs_captioner node: Ask RS-VLM to generate a caption."""
 
     model = call_geochat.CustomGeoChatModel()
 
-    # TODO: change this later
-    question = "Describe every details in the image."
+    question = "Describe every details in the image." # TODO: change this later
     img_path = Configuration.from_context().img_path 
     message = HumanMessage(content=[
         {"type": "text", "text": question},
@@ -44,8 +43,7 @@ async def get_caption(state: State) -> Dict[str, List[AIMessage]]:
 
     model = utils.load_vision_model(temp=0.1)
 
-    # TODO: change this later
-    question = "Describe every details in the image."
+    question = "Describe every details in the image." # TODO: change this later
     img_path = Configuration.from_context().img_path
 
     # Get multimodal message 
@@ -140,7 +138,6 @@ async def revise_respond(state: State) -> Dict[str, List[AIMessage]]:
 
     return {"messages": [response]}
 
-# TODO: add spokesman node
 async def finalize_response(state: State) -> Dict[str, List[AIMessage]]:
     """spokesman node: Ask the LLM to speak the latest response."""
 
@@ -150,7 +147,6 @@ async def finalize_response(state: State) -> Dict[str, List[AIMessage]]:
     sys_msg = config.spokesman_sys_prompt.format(
         time=datetime.now(tz=UTC).isoformat()
     )
-    # usr_msg = config.spokesman_usr_prompt
     usr_msg = config.spokesman_usr_prompt.format(
         function_name=utils.FinalAnswer.__name__
     )
@@ -170,17 +166,18 @@ async def finalize_response(state: State) -> Dict[str, List[AIMessage]]:
 
 # Build the Reflexion graph
 builder = StateGraph(State, input=InputState, config_schema=Configuration)
-builder.add_node("rs_captioner", get_rs_caption)
-# builder.add_node("captioner", get_caption)
+# builder.add_node("rs_captioner", get_rs_caption) # TESTING
+builder.add_node("captioner", get_caption)       # TESTING
 builder.add_node("drafter", draft_respond)
 builder.add_node("inquirer", send_query)
 builder.add_node("vision_model", ToolNode(TOOLS))
 builder.add_node("revisor", revise_respond)
 builder.add_node("spokesman", finalize_response)
 
-builder.add_edge("__start__", "rs_captioner")
-# builder.add_edge("__start__", "captioner")
-builder.add_edge("rs_captioner", "drafter")
+# builder.add_edge("__start__", "rs_captioner") # TESTING
+# builder.add_edge("rs_captioner", "drafter")   # TESTING
+builder.add_edge("__start__", "captioner")      # TESTING
+builder.add_edge("captioner", "drafter")        # TESTING
 builder.add_edge("drafter", "inquirer")
 builder.add_edge("inquirer", "vision_model")
 builder.add_edge("vision_model", "revisor")

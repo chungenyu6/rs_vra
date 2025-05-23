@@ -63,7 +63,7 @@ async def vision_model(
     img_path = Configuration.from_context().img_path
 
     # Instantiate a chat model for this tool
-    model = utils.load_vision_model(temp=0.5)
+    model = utils.load_vision_model(temp=0.1)
 
     # Get multimodal message 
     vlm_prompt_tools = utils.VLMPromptTools(question, img_path)
@@ -112,5 +112,5 @@ async def geochat(
 # Add tools in this list
 # TOOLS: List[Callable[..., Any]] = [search]
 # TOOLS: List[Callable[..., Any]] = [commonsense_reasoner]
-# TOOLS: List[Callable[..., Any]] = [vision_model]
-TOOLS: List[Callable[..., Any]] = [geochat]
+TOOLS: List[Callable[..., Any]] = [vision_model] # TESTING
+# TOOLS: List[Callable[..., Any]] = [geochat]
