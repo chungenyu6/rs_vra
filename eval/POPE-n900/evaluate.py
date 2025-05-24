@@ -17,6 +17,10 @@ import os
 import json
 import time
 import asyncio
+import sys
+from pathlib import Path
+# Add parent directory to Python path (for exec_model.py)
+sys.path.append(str(Path(__file__).parent.parent))
 
 # Third-party imports
 import wandb
