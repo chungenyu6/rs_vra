@@ -112,5 +112,5 @@ async def geochat(
 # Add tools in this list
 # TOOLS: List[Callable[..., Any]] = [search]
 # TOOLS: List[Callable[..., Any]] = [commonsense_reasoner]
-TOOLS: List[Callable[..., Any]] = [vision_model] # TESTING
-# TOOLS: List[Callable[..., Any]] = [geochat]
+# TOOLS: List[Callable[..., Any]] = [vision_model] # TESTING
+TOOLS: List[Callable[..., Any]] = [geochat] # TESTING

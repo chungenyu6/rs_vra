@@ -71,8 +71,8 @@ def load_vision_model(temp=0.1) -> ChatOllama:
 
     model = ChatOllama( 
         base_url="127.0.0.1:11436", # depend on ollama server
-        model="llava:7b-v1.5-fp16",
-        # model="",                   # next model here
+        model="llava:7b-v1.5-fp16", 
+        # model="",                   # next model here # TESTING
         temperature=temp            # dynamic temperature based on the need
     )
     

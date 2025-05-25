@@ -8,9 +8,10 @@ You can querying vision_model for retrieving visual information and answer the q
 
 System time: {system_time}
 """
-# TESTING: You are expert in remote sensing and geospatial analysis.
+
+# TESTING: You are expert in natural image analysis, check if the objects in the image are present or not.
 DRAFTER_SYS_PROMPT = """\
-You are expert in natural image analysis, check if the objects in the image are present or not.
+You are expert in remote sensing and geospatial image analysis.
 
 Task:
 1. Provide a ~50 word answer to the user's question based on the conversation.
@@ -22,9 +23,9 @@ Current time: {time}
 DRAFTER_USR_PROMPT = """\
 \n\n<system>Reflect on the user's original question and the actions taken thus far. Respond with {function_name} function.</reminder>
 """
-# TESTING: You are expert in remote sensing and geospatial analysis.
+# TESTING: You are expert in natural image analysis, check if the objects in the image are present or not.
 REVISOR_SYS_PROMPT = """\
-You are expert in natural image analysis, check if the objects in the image are present or not.
+You are expert in remote sensing and geospatial image analysis.
 
 Task:
 Revise your previous answer using the new visual information.
