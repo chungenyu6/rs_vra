@@ -16,8 +16,8 @@ from react_agent.tools import TOOLS, vision_model
 import react_agent.utils as utils
 import react_agent.call_geochat as call_geochat
 
-GRAPH_NAME = "GeoChat-Reflexion-React" # TESTING
-# GRAPH_NAME = "LLaVA1.5-Reflexion-React" # TESTING
+# GRAPH_NAME = "GeoChat-Reflexion-React" # TESTING
+GRAPH_NAME = "LLaVA1.5-Reflexion-React" # TESTING
 
 async def get_rs_caption(state: State) -> Dict[str, List[AIMessage]]:
     """rs_captioner node: Ask RS-VLM to generate a caption."""
@@ -168,17 +168,17 @@ async def finalize_response(state: State) -> Dict[str, List[AIMessage]]:
 # Build the Reflexion graph
 builder = StateGraph(State, input=InputState, config_schema=Configuration)
 builder.add_node("rs_captioner", get_rs_caption) # TESTING
-# builder.add_node("captioner", get_caption)       # TESTING
+builder.add_node("captioner", get_caption)       # TESTING
 builder.add_node("drafter", draft_respond)
 builder.add_node("inquirer", send_query)
 builder.add_node("vision_model", ToolNode(TOOLS))
 builder.add_node("revisor", revise_respond)
 builder.add_node("spokesman", finalize_response)
 
-builder.add_edge("__start__", "rs_captioner") # TESTING
-builder.add_edge("rs_captioner", "drafter")   # TESTING
-# builder.add_edge("__start__", "captioner")      # TESTING
-# builder.add_edge("captioner", "drafter")        # TESTING
+# builder.add_edge("__start__", "rs_captioner") # TESTING
+# builder.add_edge("rs_captioner", "drafter")   # TESTING
+builder.add_edge("__start__", "captioner")      # TESTING
+builder.add_edge("captioner", "drafter")        # TESTING
 builder.add_edge("drafter", "inquirer")
 builder.add_edge("inquirer", "vision_model")
 builder.add_edge("vision_model", "revisor")

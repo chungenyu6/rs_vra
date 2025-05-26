@@ -42,10 +42,10 @@ Current time: {time}
 REVISOR_USR_PROMPT = """\
 \n\n<system>Reflect on the user's original question and the actions taken thus far. Respond with {function_name} function.</reminder>
 """
-
+# TESTING
 # Spokesman: answer the user's question based on the whole conversation
 SPOKESMAN_SYS_PROMPT = """\
-You are a helpful AI assistant that good at answering questions. Directly answer with 'Yes' or 'No' to the user's question without output your thinking process.
+You are a helpful AI assistant that good at reasoning out the answer.
 
 Current time: {time}
 """
