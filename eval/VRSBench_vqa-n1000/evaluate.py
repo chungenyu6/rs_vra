@@ -22,23 +22,20 @@ import os
 import json
 import time
 import sys
-from pathlib import Path
 import asyncio
-
+from pathlib import Path
 # Add parent directory to Python path (for exec_model.py)
 sys.path.append(str(Path(__file__).parent.parent))
 
 # Local imports
 ## Initialization
-from init import init_arg, init_login
+from init import initialize
 ## Utils
 from utils import *
 ## Model
 import exec_model as exec_model
 ## Compute result
 from compute_result import compute_result
-## Logger
-from logger import logger
 ########################################################################################
 
 async def evaluate():
@@ -47,9 +44,8 @@ async def evaluate():
     # Start timing
     start_time = time.time()
 
-    # Initialize arguments and login
-    args, argw = init_arg()
-    init_login()
+    # Initialize everything in the correct order
+    args, argw, logger = initialize()
 
     # Get file paths
     IMG_FOLDER = "/home/vol-llm/datasets/ISR/VRSBench/validation/Images_val" # NOTE: change if needed
@@ -71,8 +67,6 @@ async def evaluate():
     # Process each image-question pair within the range of NUM_QUESTIONS
     logger.info(f"Processing {len(ids)} questions in question type: {args.qtype}")
     for id in ids:
-        logger.info("-"*15 + f" Model answering question id: {id} ({count+1}/{len(ids)}) " + "-"*15)
-        
         # Find the corresponding entry in labels
         entry = next(item for item in labels if item["question_id"] == id and item["type"].lower() == args.qtype.replace("_", " ").lower())
         image_id = entry["image_id"]
@@ -81,6 +75,10 @@ async def evaluate():
         img_path = os.path.join(IMG_FOLDER, image_id)
 
         # Query geochat to answer the question
+        logger.info("="*15 + f" Model answering question id: {id} ({count+1}/{len(ids)}) " + "="*15)
+        logger.info(f"Question type: {args.qtype}")
+        logger.info(f"Question: {question}")
+        logger.info(f"Question image path: {img_path}")
         logger.info(f"Querying {args.model} to answer the question")
         # NOTE: add more models here
         if args.model == "agent":
@@ -105,7 +103,7 @@ async def evaluate():
         })
         count += 1
 
-    logger.info("-"*67)
+    logger.info("="*67)
     # End timing
     end_time = time.time()
     argw.total_runtime = (end_time - start_time)/60
