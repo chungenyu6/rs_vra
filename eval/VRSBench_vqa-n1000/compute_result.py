@@ -105,7 +105,7 @@ def compute_result(args, argw, RESULT_FILE, EVAL_RESULT_FILE):
     # Iterate through each record and tally counts using new logic
     logger.info("Starting to compute results")
     for item in data:
-        logger.info("-"*15 + f" Computing result ({total+1}/{len(data)}) " + "-"*15)
+        logger.info("="*15 + f" Computing result ({total+1}/{len(data)}) " + "="*15)
 
         # Get question type
         qtype = item.get("type", "").lower()
@@ -155,7 +155,7 @@ def compute_result(args, argw, RESULT_FILE, EVAL_RESULT_FILE):
         if match == "1":
             correct += 1
 
-    logger.info("-"*51)
+    logger.info("="*55)
     logger.info("End of computing result")
 
     # Print result summary

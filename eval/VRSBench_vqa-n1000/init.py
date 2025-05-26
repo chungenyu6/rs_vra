@@ -8,10 +8,8 @@ from dotenv import load_dotenv
 import wandb
 from huggingface_hub import login
 
-# Local application imports
-## Logger
-from logger import logger
-######################################################################################
+# Local imports
+from logger import logger, setup_logger
 
 # Declare global variables at the module level
 args = None # arguments for system
@@ -19,10 +17,9 @@ argw = None # arguments for wandb
 
 def init_arg():
     """Initialize the global arguments (args, argw)"""
-
-    logger.info("Initializing the system arguments")
-    global args, argw # use global keyword to modify the module-level variables
-
+    
+    print("Initializing the system arguments")
+    
     # Arguments for system
     parser = argparse.ArgumentParser()
     parser.add_argument("--qtype", default="object_quantity", required=True, type=str, help="Question type of VRSBench_vqa-n1000 benchmark, only accepted values: object_quantity, object_position, object_direction, object_size, reasoning, object_color, object_existence, object_category, object_shape, scene_type")
@@ -36,8 +33,12 @@ def init_arg():
     # Arguments for wandb
     argw = parser.parse_args()
     
-    logger.info("System arguments initialized!")
+    print("System arguments initialized!")
     return args, argw
+
+def init_logger(args):
+    """Initialize the logger with the current args"""
+    return setup_logger(args)
 
 def init_login():
     """Initialize the system login"""
@@ -70,3 +71,11 @@ def init_login():
     login(token)
 
     logger.info("System login initialized!")
+
+def initialize():
+    """Main initialization function that sets up everything in the correct order"""
+    global args, argw
+    args, argw = init_arg()
+    init_logger(args)
+    init_login()
+    return args, argw, logger

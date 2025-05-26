@@ -16,21 +16,17 @@ import requests
 from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage
 from langgraph_sdk import get_sync_client
+import json
 
 # Local imports
 import react_agent.utils as utils
+from logger import logger
 ########################################################################################
 
 def query_agent(args, question: str, img_path: str) -> str:
     """Process a single image-question pair."""
 
     client = get_sync_client(url="http://localhost:2024")
-    pp = pprint.PrettyPrinter(indent=2)
-    
-    print(f"\n{'='*50}")
-    print(f"Processing image: {img_path}")
-    print(f"Question: {question}")
-    print(f"{'='*50}\n")
     
     for chunk in client.runs.stream(
         None,       # threadless run
@@ -49,15 +45,16 @@ def query_agent(args, question: str, img_path: str) -> str:
         },
         stream_mode="updates",
     ):
-        print(f"Receiving new event of type: {chunk.event}...")
-        pp.pprint(chunk.data)
-        print("\n")
+        logger.info(f"Receiving new event of type: {chunk.event}...")
+        # Convert chunk.data to a formatted string for logging
+        formatted_data = json.dumps(chunk.data, indent=2)
+        logger.info(f"Event data:\n{formatted_data}\n")
     
     # Extract the last response from spokesman
     last_response = chunk.data["spokesman"]["messages"][-1]["content"]
-    print("\n----- Extracted last response of spokesman -----")
-    print(last_response)
-    print("-----------------------------------------------\n")
+    logger.info("----- Extracted last response of spokesman -----")
+    logger.info(last_response)
+    logger.info("------------------------------------------------")
 
     # Add a small delay between requests to avoid overwhelming the server
     time.sleep(1)
@@ -84,6 +81,10 @@ async def query_llava(args, usr_msg: str, img_path: str) -> str:
         [HumanMessage(content=multimodal_content)],
     )
 
+    logger.info("----- Extracted last response of llava -----")
+    logger.info(response.content)
+    logger.info("------------------------------------------------")
+
     # Return the assistant's reply text
     return response.content
 
@@ -106,6 +107,10 @@ async def query_gemma3(args, usr_msg: str, img_path: str) -> str:
     response = await chat_model.ainvoke(
         [HumanMessage(content=multimodal_content)],
     )
+
+    logger.info("----- Extracted last response of gemma3 -----")
+    logger.info(response.content)
+    logger.info("------------------------------------------------")
 
     # Return the assistant's reply text
     return response.content
@@ -200,4 +205,9 @@ def query_geochat(args, usr_msg, img_path):
     
     # Invoke the model and print the response
     response = chat_model.invoke([message]) # add temperature if needed
+
+    logger.info("----- Extracted last response of geochat -----")
+    logger.info(response.content)
+    logger.info("------------------------------------------------")
+    
     return response.content
