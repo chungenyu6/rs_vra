@@ -27,8 +27,8 @@ def init_arg():
     parser = argparse.ArgumentParser()
     parser.add_argument("--qtype", default="object_quantity", required=True, type=str, help="Question type of VRSBench_vqa-n1000 benchmark, only accepted values: object_quantity, object_position, object_direction, object_size, reasoning, object_color, object_existence, object_category, object_shape, scene_type")
     parser.add_argument("--sample", default=1, required=False, type=int, help="Number of benchmark samples to test (1 - 100 samples)")
-    parser.add_argument("--model", required=True, type=str, help="Model name, only accepted values: agent, llava1.5, geochat")
-    parser.add_argument("--version", default="v1", required=False, type=str, help="Version of the model")
+    parser.add_argument("--model", required=True, type=str, help="Model name, only accepted values: agent, llava1.5, geochat, gemma3") # NOTE: change this if needed
+    parser.add_argument("--version", default="v1", required=False, type=str, help="Version of the model") # NOTE: change this if needed
     parser.add_argument("--max_reflexion_iters", default=1, required=False, type=int, help="Maximum number of reflexion iterations")
     parser.add_argument("--wandb", default=False, required=False, type=lambda x: str(x).lower() == 'true', help="Set to True to log to wandb")
     args = parser.parse_args()

@@ -87,6 +87,29 @@ async def query_llava(args, usr_msg: str, img_path: str) -> str:
     # Return the assistant's reply text
     return response.content
 
+async def query_gemma3(args, usr_msg: str, img_path: str) -> str:
+    """Ask gemma3 to answer questions with an image-question pair."""
+
+    # Instantiate the custom chat model
+    chat_model = ChatOllama( 
+        base_url="127.0.0.1:11433", # depend on ollama server
+        model="gemma3:12b-it-fp16",
+        temperature=0.1            # dynamic temperature based on the need
+    ) # add temperature if needed (default is 0.1)
+
+    # Get multimodal message 
+    vlm_prompt_tools = utils.VLMPromptTools(usr_msg, img_path)
+    await vlm_prompt_tools.convert_to_base64()  # async base64 encoding to avoid BlockingError
+    multimodal_content = vlm_prompt_tools.get_multimodal_content()
+
+    # Invoke with a list of BaseMessage, supplying the injected config
+    response = await chat_model.ainvoke(
+        [HumanMessage(content=multimodal_content)],
+    )
+
+    # Return the assistant's reply text
+    return response.content
+
 class CustomGeoChatModel(BaseChatModel):
     """A custom LangChain chat model that interfaces with the GeoChat FastAPI endpoint."""
     
