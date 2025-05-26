@@ -18,8 +18,8 @@ import react_agent.call_geochat as call_geochat
 
 # GRAPH_NAME = "GeoChat-Reflexion-React" # TESTING
 # GRAPH_NAME = "LLaVA1.5-Reflexion-React" # TESTING
-GRAPH_NAME = "Gemma3-Reflexion-React" # TESTING
-# GRAPH_NAME = "GeoChat_LLaVA1.5-Reflexion-React" # TESTING
+# GRAPH_NAME = "Gemma3-Reflexion-React" # TESTING
+GRAPH_NAME = "GeoChat_LLaVA1.5-Reflexion-React" # TESTING
 
 async def get_rs_caption(state: State) -> Dict[str, List[AIMessage]]:
     """rs_captioner node: Ask RS-VLM to generate a caption."""
@@ -170,7 +170,6 @@ async def revise_respond(state: State) -> Dict[str, List[AIMessage]]:
         # If your prompt template expects explicit tool outputs, extract them from state.messages here
     )
 
-
     response = cast(
         AIMessage,
         await model.ainvoke(
@@ -217,19 +216,19 @@ builder.add_node("rs_captioner", get_rs_caption) # TESTING
 builder.add_node("captioner", get_caption)       # TESTING
 builder.add_node("drafter", draft_respond)
 builder.add_node("inquirer", send_query)
-# builder.add_node("vision_model", ToolNode(TOOLS)) # TESTING
-builder.add_node("tool_executor", ToolNode(TOOLS)) # TESTING
+# builder.add_node("vision_model", ToolNode(TOOLS)) # TESTING: single tool
+builder.add_node("tool_executor", ToolNode(TOOLS)) # TESTING: multiple tools
 builder.add_node("revisor", revise_respond)
 builder.add_node("spokesman", finalize_response)
 
-# builder.add_edge("__start__", "rs_captioner") # TESTING
-# builder.add_edge("rs_captioner", "drafter")   # TESTING
-builder.add_edge("__start__", "captioner")      # TESTING
-builder.add_edge("captioner", "drafter")        # TESTING
+builder.add_edge("__start__", "rs_captioner") # TESTING
+builder.add_edge("rs_captioner", "drafter")   # TESTING
+# builder.add_edge("__start__", "captioner")      # TESTING
+# builder.add_edge("captioner", "drafter")        # TESTING
 builder.add_edge("drafter", "inquirer")
-# builder.add_edge("inquirer", "vision_model") # TESTING
+# builder.add_edge("inquirer", "vision_model") # TESTING: single tool
 # builder.add_edge("vision_model", "revisor") # TESTING
-builder.add_edge("inquirer", "tool_executor") # TESTING
+builder.add_edge("inquirer", "tool_executor") # TESTING: multiple tools
 builder.add_edge("tool_executor", "revisor") # TESTING
 
 # Decide whether to loop or finish

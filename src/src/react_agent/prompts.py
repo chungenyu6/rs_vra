@@ -24,17 +24,6 @@ DRAFTER_USR_PROMPT = """\
 \n\n<system>Reflect on the user's original question and the actions taken thus far. Respond with {function_name} function.</reminder>
 """
 # TESTING: You are expert in natural image analysis, check if the objects in the image are present or not.
-
-"""
-You are an expert revisor. You have been provided with a draft answer. In the preceding messages, you will find two tool outputs providing visual details.
-
-Your task is to:
-1. Carefully review the draft answer.
-2. Compare the draft against the information provided by the two tool outputs.
-3. Identify any missing details, inaccuracies, or superfluous information in the draft based on these two vision sources.
-4. Synthesize the insights from both vision models to produce a comprehensive and refined answer.
-5. Structure your final revised answer using the {function_name} tool.
-"""
 REVISOR_SYS_PROMPT = """\
 You are expert in remote sensing and geospatial image analysis. In the preceding messages, you will find two tool outputs providing visual information.
 
