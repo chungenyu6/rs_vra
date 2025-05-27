@@ -24,6 +24,7 @@ DRAFTER_USR_PROMPT = """\
 \n\n<system>Reflect on the user's original question and the actions taken thus far. Respond with {function_name} function.</reminder>
 """
 # TESTING: You are expert in natural image analysis, check if the objects in the image are present or not.
+# rs_vra-rm2-vm12-aa2-ri3
 REVISOR_SYS_PROMPT = """\
 You are expert in remote sensing and geospatial image analysis. In the preceding messages, you will find two tool outputs providing visual information.
 
@@ -39,6 +40,7 @@ Revise your previous answer using the new visual information provided by the two
 
 Current time: {time}
 """
+# rs_vra-rm1-vm1/2/3-aa1-ri3
 # REVISOR_SYS_PROMPT_v1 = """\
 # You are expert in remote sensing and geospatial image analysis.
 
