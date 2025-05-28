@@ -66,14 +66,23 @@ def load_tool_model() -> ChatOllama:
     
     return model
 
-def load_vision_model(temp=0.1) -> ChatOllama:
+def load_llava15(temp=0.1) -> ChatOllama:
     """Load a vision model from ollama."""
 
     model = ChatOllama( 
         base_url="127.0.0.1:11436", # depend on ollama server
         model="llava:7b-v1.5-fp16", 
-        # base_url="127.0.0.1:11433", # depend on ollama server # TESTING
-        # model="gemma3:12b-it-fp16", # next model here # TESTING
+        temperature=temp            # dynamic temperature based on the need
+    )
+    
+    return model
+
+def load_gemma3(temp=0.1) -> ChatOllama:
+    """Load a vision model from ollama."""
+
+    model = ChatOllama(
+        base_url="127.0.0.1:11433", # depend on ollama server
+        model="gemma3:12b-it-fp16", 
         temperature=temp            # dynamic temperature based on the need
     )
     
