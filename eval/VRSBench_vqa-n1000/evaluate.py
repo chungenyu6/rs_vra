@@ -89,6 +89,8 @@ async def evaluate():
             prediction = await exec_model.query_llava(args, question, img_path)
         elif args.model == "gemma3":
             prediction = await exec_model.query_gemma3(args, question, img_path)
+        elif args.model == "mistral31":
+            prediction = await exec_model.query_mistral31(args, question, img_path)
         else:
             raise ValueError(f"Invalid model: {args.model}")
 

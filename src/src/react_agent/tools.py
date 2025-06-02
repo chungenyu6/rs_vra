@@ -51,8 +51,8 @@ async def commonsense_reasoner(
     # Return the assistant's reply text
     return response.content
 
-# NOTE: llava
-async def vision_model_1(
+# NOTE: llava 1.5
+async def llava15(
     question: str,
     *,
     config: Annotated[RunnableConfig, InjectedToolArg]
@@ -79,7 +79,7 @@ async def vision_model_1(
     return response.content
 
 # NOTE: gemma3
-async def vision_model_2(
+async def gemma3(
     question: str,
     *,
     config: Annotated[RunnableConfig, InjectedToolArg]
@@ -105,7 +105,34 @@ async def vision_model_2(
     # Return the assistant's reply text
     return response.content
 
-# Use geochat as tool
+# NOTE: mistral small 3.1
+async def mistral31(
+    question: str,
+    *,
+    config: Annotated[RunnableConfig, InjectedToolArg]
+) -> str:
+    """Provides visual information for the given question."""
+
+    img_path = Configuration.from_context().img_path
+
+    # Instantiate a chat model for this tool
+    model = utils.load_mistral31(temp=0.1)
+
+    # Get multimodal message 
+    vlm_prompt_tools = utils.VLMPromptTools(question, img_path)
+    await vlm_prompt_tools.convert_to_base64()  # async base64 encoding to avoid BlockingError
+    multimodal_content = vlm_prompt_tools.get_multimodal_content()
+
+    # Invoke with a list of BaseMessage, supplying the injected config
+    response = await model.ainvoke(
+        [HumanMessage(content=multimodal_content)],
+        config=config
+    )
+
+    # Return the assistant's reply text
+    return response.content
+
+# NOTE: geochat
 async def geochat(
     question: str,
     *,
@@ -139,5 +166,5 @@ async def geochat(
 # TOOLS: List[Callable[..., Any]] = [commonsense_reasoner]
 # TOOLS: List[Callable[..., Any]] = [vision_model]
 # TOOLS: List[Callable[..., Any]] = [geochat]
-# TOOLS: List[Callable[..., Any]] = [vision_model_1, geochat]
-TOOLS: List[Callable[..., Any]] = [vision_model_1, vision_model_2, geochat] # TESTING
+TOOLS: List[Callable[..., Any]] = [mistral31, geochat] # TESTING
+# TOOLS: List[Callable[..., Any]] = [llava15, gemma3, geochat]

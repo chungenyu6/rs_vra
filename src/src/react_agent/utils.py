@@ -88,6 +88,17 @@ def load_gemma3(temp=0.1) -> ChatOllama:
     
     return model
 
+def load_mistral31(temp=0.1) -> ChatOllama:
+    """Load a vision model from ollama."""
+
+    model = ChatOllama(
+        base_url="127.0.0.1:11432", # depend on ollama server
+        model="mistral-small3.1:24b-instruct-2503-q8_0", 
+        temperature=temp            # dynamic temperature based on the need
+    )
+    
+    return model
+
 # NOTE: Functions for vision models
 class VLMPromptTools:
     def __init__(self, question, img_path):

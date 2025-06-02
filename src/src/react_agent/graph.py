@@ -19,8 +19,9 @@ import react_agent.call_geochat as call_geochat
 # GRAPH_NAME = "GeoChat-Reflexion-React" 
 # GRAPH_NAME = "LLaVA1.5-Reflexion-React"
 # GRAPH_NAME = "Gemma3-Reflexion-React"
+GRAPH_NAME = "MistralSmall3.1-Reflexion-React"
 # GRAPH_NAME = "GeoChat_LLaVA1.5-Reflexion-React"
-GRAPH_NAME = "GeoChat_LLaVA1.5_Gemma3-Reflexion-React" # TESTING
+# GRAPH_NAME = "GeoChat_LLaVA1.5_Gemma3-Reflexion-React"
 
 async def get_rs_caption(state: State) -> Dict[str, List[AIMessage]]:
     """rs_captioner node: Ask RS-VLM to generate a caption."""
@@ -102,12 +103,12 @@ async def send_query(state: State) -> Dict[str, List[AIMessage]]:
     """inquirer node: Send a question from the latest response to the geochat tool."""
     
     # NOTE: single tool
-    # model = utils.load_reasoning_model().bind_tools(TOOLS, tool_choice="geochat") # tool_choice enforces the model to use one of the provided tools
-    # usr_msg = "Extract one question from the latest response and invoke the tool with the question.<tool_call>" # FIX LATER: not sure if need <tool_call> tag
+    model = utils.load_reasoning_model().bind_tools(TOOLS, tool_choice="geochat") # tool_choice enforces the model to use one of the provided tools
+    usr_msg = "Extract one question from the latest response and invoke the tool with the question.<tool_call>" # FIX LATER: not sure if need <tool_call> tag
 
     # NOTE: multiple tools
-    model = utils.load_reasoning_model().bind_tools(TOOLS) # no tool_choice, the model can use all the provided tools
-    usr_msg = "Extract one question from the latest response. Then, invoke the ALL the tools using this same extracted question. You MUST generate separate tool calls in your response with the same question argument."
+    # model = utils.load_reasoning_model().bind_tools(TOOLS) # no tool_choice, the model can use all the provided tools
+    # usr_msg = "Extract one question from the latest response. Then, invoke the ALL the tools using this same extracted question. You MUST generate separate tool calls in your response with the same question argument."
 
     response = cast(
         AIMessage,
@@ -202,32 +203,11 @@ builder = StateGraph(State, input=InputState, config_schema=Configuration)
 ####################################################
 # NOTE: agent version: rs_vra-rm1-vm1/2/3/4-aa1-ri3
 ####################################################
-# builder.add_node("rs_captioner", get_rs_caption) # RS-LVLM captioner
-# # builder.add_node("captioner", get_caption) # LVLM captioner
-# builder.add_node("drafter", draft_respond)
-# builder.add_node("inquirer", send_query)
-# builder.add_node("vision_model", ToolNode(TOOLS)) # single tool
-# builder.add_node("revisor", revise_respond)
-# builder.add_node("spokesman", finalize_response)
-
-# builder.add_edge("__start__", "rs_captioner") # RS-LVLM captioner
-# builder.add_edge("rs_captioner", "drafter")
-# # builder.add_edge("__start__", "captioner") # LVLM captioner
-# # builder.add_edge("captioner", "drafter")
-# builder.add_edge("drafter", "inquirer")
-# builder.add_edge("inquirer", "vision_model") # single tool
-# builder.add_edge("vision_model", "revisor")
-
-####################################################
-# NOTE: agent version: 
-    # rs_vra-rm2-vm12-aa2-ri3
-    # rs_vra-rm2_1-vm123-aa2-ri3
-####################################################
 builder.add_node("rs_captioner", get_rs_caption) # RS-LVLM captioner
 # builder.add_node("captioner", get_caption) # LVLM captioner
 builder.add_node("drafter", draft_respond)
 builder.add_node("inquirer", send_query)
-builder.add_node("tool_executor", ToolNode(TOOLS)) # multiple tools
+builder.add_node("vision_model", ToolNode(TOOLS)) # single tool
 builder.add_node("revisor", revise_respond)
 builder.add_node("spokesman", finalize_response)
 
@@ -236,8 +216,29 @@ builder.add_edge("rs_captioner", "drafter")
 # builder.add_edge("__start__", "captioner") # LVLM captioner
 # builder.add_edge("captioner", "drafter")
 builder.add_edge("drafter", "inquirer")
-builder.add_edge("inquirer", "tool_executor") # multiple tools
-builder.add_edge("tool_executor", "revisor")
+builder.add_edge("inquirer", "vision_model") # single tool
+builder.add_edge("vision_model", "revisor")
+
+####################################################
+# NOTE: agent version: 
+    # rs_vra-rm2-vm12-aa2-ri3
+    # rs_vra-rm2_1-vm123-aa2-ri3
+####################################################
+# builder.add_node("rs_captioner", get_rs_caption) # RS-LVLM captioner
+# # builder.add_node("captioner", get_caption) # LVLM captioner
+# builder.add_node("drafter", draft_respond)
+# builder.add_node("inquirer", send_query)
+# builder.add_node("tool_executor", ToolNode(TOOLS)) # multiple tools
+# builder.add_node("revisor", revise_respond)
+# builder.add_node("spokesman", finalize_response)
+
+# builder.add_edge("__start__", "rs_captioner") # RS-LVLM captioner
+# builder.add_edge("rs_captioner", "drafter")
+# # builder.add_edge("__start__", "captioner") # LVLM captioner
+# # builder.add_edge("captioner", "drafter")
+# builder.add_edge("drafter", "inquirer")
+# builder.add_edge("inquirer", "tool_executor") # multiple tools
+# builder.add_edge("tool_executor", "revisor")
 
 # Decide whether to loop or finish
 def loop_or_end(state: State) -> Literal["inquirer", "spokesman"]:

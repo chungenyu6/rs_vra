@@ -1,0 +1,35 @@
+2025-06-02 20:17:28,189 - INFO - Initializing the system login
+2025-06-02 20:17:28,414 - INFO - System login initialized!
+2025-06-02 20:17:28,418 - INFO - Processing 1 questions in question type: object_quantity
+2025-06-02 20:17:28,419 - INFO - =============== Model answering question id: 1 (1/1) ===============
+2025-06-02 20:17:28,419 - INFO - Question type: object_quantity
+2025-06-02 20:17:28,419 - INFO - Question: How many small vehicles are visible in the image?
+2025-06-02 20:17:28,419 - INFO - Question image path: /home/vol-llm/datasets/ISR/VRSBench/validation/Images_val/P0003_0002.png
+2025-06-02 20:17:28,419 - INFO - Querying mistral31 to answer the question
+2025-06-02 20:17:30,264 - INFO - ----- Extracted last response of mistral31 -----
+2025-06-02 20:17:30,264 - INFO - There are two small vehicles visible in the image.
+2025-06-02 20:17:30,264 - INFO - ------------------------------------------------
+2025-06-02 20:17:30,266 - INFO - ===================================================================
+2025-06-02 20:17:30,267 - INFO - Total time: 0.03 minutes
+2025-06-02 20:17:30,267 - INFO - Saving the response to results/VRSBench_vqa-n1000/mistral31/v1/object_quantity/sam1/answer.json
+2025-06-02 20:17:30,268 - INFO - Results saved to results/VRSBench_vqa-n1000/mistral31/v1/object_quantity/sam1/answer.json
+2025-06-02 20:17:30,268 - INFO - Initializing evaluation LLM
+2025-06-02 20:17:30,383 - INFO - LLM initialized
+2025-06-02 20:17:30,383 - INFO - Loading answers from results file
+2025-06-02 20:17:30,383 - INFO - Starting to compute results
+2025-06-02 20:17:30,383 - INFO - =============== Computing result (1/1) ===============
+2025-06-02 20:17:30,383 - INFO - Question Type: object quantity
+2025-06-02 20:17:30,383 - INFO - Question: How many small vehicles are visible in the image?
+2025-06-02 20:17:30,383 - INFO - Ground Truth: 2
+2025-06-02 20:17:30,383 - INFO - Prediction: There are two small vehicles visible in the image.
+2025-06-02 20:17:30,383 - INFO - Match (ground truth yes/no/number): 0
+2025-06-02 20:17:30,383 - INFO - =======================================================
+2025-06-02 20:17:30,383 - INFO - End of computing result
+2025-06-02 20:17:30,383 - INFO - Printing result summary
+2025-06-02 20:17:30,383 - INFO - ========================= Result summary =========================
+2025-06-02 20:17:30,383 - INFO - Total questions: 1, Unknown types: 0
+2025-06-02 20:17:30,383 - INFO - Accuracy for object_quantity: 0.00% (0/1)
+2025-06-02 20:17:30,383 - INFO - ===================================================================
+2025-06-02 20:17:30,384 - INFO - Result summary printed
+2025-06-02 20:17:30,384 - INFO - Saving result summary to txt file
+2025-06-02 20:17:30,384 - INFO - Result summary saved to results/VRSBench_vqa-n1000/mistral31/v1/object_quantity/sam1/eval_result.txt
