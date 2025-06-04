@@ -61,8 +61,8 @@ def query_agent(args, question: str, img_path: str) -> str:
 
     return last_response
 
-async def query_llava(args, usr_msg: str, img_path: str) -> str:
-    """Ask llava to answer questions with an image-question pair."""
+async def query_llava15(args, usr_msg: str, img_path: str) -> str:
+    """Ask llava1.5 to answer questions with an image-question pair."""
 
     # Instantiate the custom chat model
     chat_model = ChatOllama( 
@@ -136,6 +136,33 @@ async def query_mistral31(args, usr_msg: str, img_path: str) -> str:
     )
 
     logger.info("----- Extracted last response of mistral31 -----")
+    logger.info(response.content)
+    logger.info("------------------------------------------------")
+
+    # Return the assistant's reply text
+    return response.content
+
+async def query_gemini25flash(args, usr_msg: str, img_path: str) -> str:
+    """Ask gemini2.5-flash to answer questions with an image-question pair."""
+
+    # Instantiate the custom chat model
+    model = utils.load_commercial_model(
+        provider="google_genai",
+        model="gemini-2.5-flash-preview-05-20",
+        temp=0.1
+    )
+
+    # Get multimodal message 
+    vlm_prompt_tools = utils.VLMPromptTools(usr_msg, img_path)
+    await vlm_prompt_tools.convert_to_base64()  # async base64 encoding to avoid BlockingError
+    multimodal_content = vlm_prompt_tools.get_multimodal_content()
+
+    # Invoke with a list of BaseMessage, supplying the injected config
+    response = await model.ainvoke(
+        [HumanMessage(content=multimodal_content)],
+    )
+
+    logger.info("----- Extracted last response of gemini -----")
     logger.info(response.content)
     logger.info("------------------------------------------------")
 

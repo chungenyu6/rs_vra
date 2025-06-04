@@ -12,7 +12,7 @@ cd /home/ISRAgent
 
 ########################################################################################
 # Run all models
-# model: agent, geochat, llava1.5, gemma3
+# model: agent, geochat, llava15, gemma3, mistral31, gemini25-flash
 ## TODO: change model, version
 ########################################################################################
 agent_version=rs_vra-rm1-vm4-aa1-ri3
@@ -21,7 +21,7 @@ sample=50
 max_reflexion_iters=3
 wandb=True
 # object_quantity object_position object_direction object_size reasoning object_color object_existence object_category object_shape scene_type
-for model in mistral31 agent; do
+for model in gemini25-flash; do
     for qtype in object_quantity object_position object_direction object_size reasoning object_color object_existence object_category object_shape scene_type; do
         echo "Evaluating $model on $qtype"
         if [ $model == "agent" ]; then

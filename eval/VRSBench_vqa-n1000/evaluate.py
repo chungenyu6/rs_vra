@@ -85,12 +85,14 @@ async def evaluate():
             prediction = exec_model.query_agent(args, question, img_path)
         elif args.model == "geochat":
             prediction = exec_model.query_geochat(args, question, img_path)
-        elif args.model == "llava1.5":
-            prediction = await exec_model.query_llava(args, question, img_path)
+        elif args.model == "llava15":
+            prediction = await exec_model.query_llava15(args, question, img_path)
         elif args.model == "gemma3":
             prediction = await exec_model.query_gemma3(args, question, img_path)
         elif args.model == "mistral31":
             prediction = await exec_model.query_mistral31(args, question, img_path)
+        elif args.model == "gemini25-flash":
+            prediction = await exec_model.query_gemini25flash(args, question, img_path)
         else:
             raise ValueError(f"Invalid model: {args.model}")
 

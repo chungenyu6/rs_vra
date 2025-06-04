@@ -1,0 +1,35 @@
+2025-06-03 21:12:46,713 - INFO - Initializing the system login
+2025-06-03 21:12:46,843 - INFO - System login initialized!
+2025-06-03 21:12:46,845 - INFO - Processing 1 questions in question type: object_quantity
+2025-06-03 21:12:46,845 - INFO - =============== Model answering question id: 1 (1/1) ===============
+2025-06-03 21:12:46,845 - INFO - Question type: object_quantity
+2025-06-03 21:12:46,845 - INFO - Question: How many small vehicles are visible in the image?
+2025-06-03 21:12:46,846 - INFO - Question image path: /home/vol-llm/datasets/ISR/VRSBench/validation/Images_val/P0003_0002.png
+2025-06-03 21:12:46,846 - INFO - Querying gemini25-flash to answer the question
+2025-06-03 21:12:48,516 - INFO - ----- Extracted last response of gemini -----
+2025-06-03 21:12:48,517 - INFO - There are a total of 2 small vehicles present in this image.
+2025-06-03 21:12:48,517 - INFO - ------------------------------------------------
+2025-06-03 21:12:48,517 - INFO - ===================================================================
+2025-06-03 21:12:48,517 - INFO - Total time: 0.03 minutes
+2025-06-03 21:12:48,517 - INFO - Saving the response to results/VRSBench_vqa-n1000/gemini25-flash/v1/object_quantity/sam1/answer.json
+2025-06-03 21:12:48,517 - INFO - Results saved to results/VRSBench_vqa-n1000/gemini25-flash/v1/object_quantity/sam1/answer.json
+2025-06-03 21:12:48,518 - INFO - Initializing evaluation LLM
+2025-06-03 21:12:48,615 - INFO - LLM initialized
+2025-06-03 21:12:48,615 - INFO - Loading answers from results file
+2025-06-03 21:12:48,616 - INFO - Starting to compute results
+2025-06-03 21:12:48,616 - INFO - =============== Computing result (1/1) ===============
+2025-06-03 21:12:48,616 - INFO - Question Type: object quantity
+2025-06-03 21:12:48,616 - INFO - Question: How many small vehicles are visible in the image?
+2025-06-03 21:12:48,616 - INFO - Ground Truth: 2
+2025-06-03 21:12:48,616 - INFO - Prediction: There are a total of 2 small vehicles present in this image.
+2025-06-03 21:12:48,616 - INFO - Match (ground truth in prediction): 1
+2025-06-03 21:12:48,616 - INFO - =======================================================
+2025-06-03 21:12:48,616 - INFO - End of computing result
+2025-06-03 21:12:48,616 - INFO - Printing result summary
+2025-06-03 21:12:48,616 - INFO - ========================= Result summary =========================
+2025-06-03 21:12:48,616 - INFO - Total questions: 1, Unknown types: 0
+2025-06-03 21:12:48,616 - INFO - Accuracy for object_quantity: 100.00% (1/1)
+2025-06-03 21:12:48,616 - INFO - ===================================================================
+2025-06-03 21:12:48,616 - INFO - Result summary printed
+2025-06-03 21:12:48,616 - INFO - Saving result summary to txt file
+2025-06-03 21:12:48,616 - INFO - Result summary saved to results/VRSBench_vqa-n1000/gemini25-flash/v1/object_quantity/sam1/eval_result.txt

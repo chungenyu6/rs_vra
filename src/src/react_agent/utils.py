@@ -24,18 +24,6 @@ def get_message_text(msg: BaseMessage) -> str:
         txts = [c if isinstance(c, str) else (c.get("text") or "") for c in content]
         return "".join(txts).strip()
 
-def load_chat_model(fully_specified_name: str) -> BaseChatModel:
-    """Load a commercial chat model from a fully specified name.
-
-    Args:
-        fully_specified_name (str): String in the format 'provider/model'.
-    """
-
-    provider, model = fully_specified_name.split("/", maxsplit=1)
-    
-    return init_chat_model(model, model_provider=provider)
-
-
 # TESTING
 # NOTE: the model must has the ability to use tools
 def load_reasoning_model() -> ChatOllama:
@@ -98,6 +86,17 @@ def load_mistral31(temp=0.1) -> ChatOllama:
     )
     
     return model
+
+def load_commercial_model(provider: str, model: str, temp=0.1) -> BaseChatModel:
+    """Load a commercial chat model from a fully specified name.
+
+    Args:
+        provider (str): Provider of the model.
+        model (str): Model name.
+        temp (float): Temperature for the model.
+    """
+    
+    return init_chat_model(model, model_provider=provider, temperature=temp)
 
 # NOTE: Functions for vision models
 class VLMPromptTools:
@@ -183,3 +182,4 @@ class FinalAnswer(BaseModel):
     """
 
     answer: str = Field(description="~50 word detailed answer to the question.")
+
