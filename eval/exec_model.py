@@ -23,7 +23,7 @@ import react_agent.utils as utils
 from logger import logger
 ########################################################################################
 
-def query_agent(args, question: str, img_path: str) -> str:
+def query_agent(args, usr_msg: str, img_path: str) -> str:
     """Process a single image-question pair."""
 
     client = get_sync_client(url="http://localhost:2024")
@@ -34,7 +34,7 @@ def query_agent(args, question: str, img_path: str) -> str:
         input={     # send user message to the assistant
             "messages": [{
                 "role": "human",
-                "content": question,
+                "content": usr_msg,
             }],
         },
         config={    # update the configuration

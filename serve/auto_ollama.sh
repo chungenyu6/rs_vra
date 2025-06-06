@@ -7,14 +7,14 @@
 declare -A model_port_gpu=(
   # [llama2]="11434:0"
   # [llama3.2-vision]="11435:0"
-  # [llava:7b-v1.5-fp16]="11436:6" # 16 GB RAM
+  [llava:7b-v1.5-fp16]="11436:6" # 16 GB RAM
   # [granite3.2:8b]="11437:1" # 8 GB RAM
   # [granite3.2:8b-instruct-fp16]="11438:0" # 16 GB RAM
   # [qwen2.5:7b-instruct-fp16]="11438:5" # 16 GB RAM
   [qwq]="11439:7" # 20 GB RAM
   [phi4]="11434:6" # 16 GB RAM
   # [gemma3:12b-it-fp16]="11433:5" # 24 GB RAM
-  [mistral-small3.1:24b-instruct-2503-q8_0]="11432:5" # 26 GB RAM
+  # [mistral-small3.1:24b-instruct-2503-q8_0]="11432:5" # 26 GB RAM
   # geochat is currently occupying gpu 6 with 16 GB RAM
 )
 
