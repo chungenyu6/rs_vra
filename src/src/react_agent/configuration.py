@@ -55,6 +55,20 @@ class Configuration:
             "This prompt sets the context and behavior for the agent."
         },
     )
+    questioner_sys_prompt: str = field(
+        default=prompts.QUESTIONER_SYS_PROMPT,
+        metadata={
+            "description": "The prompt to use for the agent's questioner interactions. "
+            "This prompt sets the context and behavior for the agent."
+        },
+    )
+    questioner_usr_prompt: str = field(
+        default=prompts.QUESTIONER_USR_PROMPT,
+        metadata={
+            "description": "The prompt to use for the agent's questioner interactions. "
+            "This prompt sets the context and behavior for the agent."
+        },
+    )
     revisor_sys_prompt: str = field(
         default=prompts.REVISOR_SYS_PROMPT,
         metadata={
@@ -69,20 +83,21 @@ class Configuration:
             "This prompt sets the context and behavior for the agent."
         },
     )
-    spokesman_sys_prompt: str = field(
-        default=prompts.SPOKESMAN_SYS_PROMPT,
-        metadata={
-            "description": "The prompt to use for the agent's spokesman interactions. "
-            "This prompt sets the context and behavior for the agent."
-        },
-    )
-    spokesman_usr_prompt: str = field(
-        default=prompts.SPOKESMAN_USR_PROMPT,
-        metadata={
-            "description": "The prompt to use for the agent's spokesman interactions. "
-            "This prompt sets the context and behavior for the agent."
-        },
-    )
+    # TODO: remove
+    # spokesman_sys_prompt: str = field(
+    #     default=prompts.SPOKESMAN_SYS_PROMPT,
+    #     metadata={
+    #         "description": "The prompt to use for the agent's spokesman interactions. "
+    #         "This prompt sets the context and behavior for the agent."
+    #     },
+    # )
+    # spokesman_usr_prompt: str = field(
+    #     default=prompts.SPOKESMAN_USR_PROMPT,
+    #     metadata={
+    #         "description": "The prompt to use for the agent's spokesman interactions. "
+    #         "This prompt sets the context and behavior for the agent."
+    #     },
+    # )
     commercial_model_api: Annotated[str, {"__template_metadata__": {"kind": "llm"}}] = field(
         default="anthropic/claude-3-5-sonnet-20240620",
         metadata={

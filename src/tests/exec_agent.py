@@ -13,8 +13,27 @@ from react_agent.configuration import Configuration
 
 # TODO: Replace with your own image-question pairs
 # Define image-question pairs here
+msg = """\
+Question: {question}
+The choices are listed below: 
+{choice_a}
+{choice_b}
+{choice_c}
+{choice_d}
+{choice_e}
+Select the best answer to the above multiple-choice question based on the image. Respond with only the letter (A, B, C, D, or E) of the correct option. 
+The best answer is:
+"""
+usr_msg = msg.format(question="Where is the yellow crane in the picture?", 
+                     choice_a="(A) In the upper right area of the picture", 
+                     choice_b="(B) In the upper left area of the picture", 
+                     choice_c="(C) In the lower right area of the picture", 
+                     choice_d="(D) In the lower left area of the picture", 
+                     choice_e="(E) This image doesn't feature the position.")
+
 IMAGE_QUESTION_PAIRS: List[Tuple[str, str]] = [
-    ("Is it a urban area?", "/home/ISRAgent/src/tests/demo_img/05864_0000.png"),
+    # ("Is it a urban area?", "/home/ISRAgent/src/tests/demo_img/05864_0000.png"), # free-form question
+    (usr_msg, "/home/vol-llm/datasets/ISR/MME-RealWorld-Lite/img/23204.jpg"), # multiple-choice question
     # ("How many bridges are in the image?", "/home/ISRAgent/src/tests/demo_img/05865_0000.png"),
     # ("Is there a car in the image?", "/home/ISRAgent/src/tests/demo_img/05863_0000.png"),
 ]
@@ -54,11 +73,11 @@ def query_agent(question: str, img_path: str):
         print("\n")
     
     # NOTE: only if the last agent is revisor
-    # Extract the final response from revisor
-    # final_response = chunk.data["spokesman"]["messages"][-1]["content"]
-    # print("\n----- Extracted final response of revisor -----")
-    # print(final_response)
-    # print("-----------------------------------------------\n")
+    # Extract the final response
+    final_response = chunk.data["final_response"]["messages"][-1]["content"]
+    print("\n----- Extracted final response of revisor -----")
+    print(final_response)
+    print("-----------------------------------------------\n")
 
     # Add a small delay between requests to avoid overwhelming the server
     time.sleep(1)

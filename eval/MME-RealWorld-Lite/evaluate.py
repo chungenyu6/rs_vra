@@ -17,6 +17,8 @@ import time
 import sys
 import asyncio
 from pathlib import Path
+
+from numpy import extract
 # Add parent directory to Python path (for exec_model.py)
 sys.path.append(str(Path(__file__).parent.parent))
 
@@ -62,7 +64,7 @@ async def evaluate():
     for id in ids:
         # Find the corresponding entry in labels
         entry = next(item for item in labels if item["index"] == id and item["l2_category"].lower() == args.l2category.lower())
-        category = entry["category"]
+        argw.category = entry["category"]
         img_path = entry["image_path"]
         question = entry["question"]
         options = entry["options"] # a list of strings
@@ -80,6 +82,9 @@ async def evaluate():
         logger.info(f"Querying {args.model} to answer the question")
         # NOTE: add more models here
         if args.model == "agent":
+            # raw_prediction = exec_model.query_agent(args, usr_msg, img_path)
+            # extracted_prediction = extract_after_final_answer(raw_prediction)
+            # prediction = extracted_prediction.strip()
             prediction = exec_model.query_agent(args, usr_msg, img_path)
         elif args.model == "geochat":
             prediction = exec_model.query_geochat(args, usr_msg, img_path)
@@ -96,7 +101,7 @@ async def evaluate():
 
         # Save the response
         results.append({
-            "category": category,
+            "category": argw.category,
             "l2_category": args.l2category,
             "index": id,
             "img_path": img_path,

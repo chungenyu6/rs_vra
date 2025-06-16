@@ -44,3 +44,27 @@ def assemble_question(question, options):
     msg = msg.format(question=question, choice_a=options[0], choice_b=options[1], choice_c=options[2], choice_d=options[3], choice_e=options[4])
 
     return msg
+
+def extract_after_final_answer(text):
+    """
+    Extract text that comes after '**FinalAnswer**' marker
+    
+    Args:
+        text (str): Input string containing the marker
+        
+    Returns:
+        str: Text after the marker, or empty string if marker not found
+    """
+    marker = "FinalAnswer"
+    
+    # Find the position of the marker
+    marker_pos = text.find(marker)
+    
+    if marker_pos == -1:
+        return ""  # Marker not found
+    
+    # Extract everything after the marker
+    start_pos = marker_pos + len(marker)
+    result = text[start_pos:]
+    
+    return result

@@ -1,58 +1,18 @@
 I crafted the label.json based on the [MME-RealWorld-Lite Dataset on Huggingface](https://huggingface.co/datasets/yifanzhang114/MME-RealWorld-lite-lmms-eval).
+The code for crafting dataset and indices output based on the original dataset, but I manually fixed some typos in the original dataset.
 
 ============================================================
 UNIQUE CATEGORIES:
 ============================================================
 1. Perception/Autonomous_Driving
-2. Perception/Diagram and Table
+2. Perception/Diagram_and_Table
 3. Perception/Monitoring
-4. Perception/OCR with Complex Context
-5. Perception/Remote Sensing
+4. Perception/OCR_with_Complex_Context
+5. Perception/Remote_Sensing
 6. Reasoning/Autonomous_Driving
-7. Reasoning/Diagram and Table
+7. Reasoning/Diagram_and_Table
 8. Reasoning/Monitoring
-9. Reasoning/OCR with Complex Context
-
-============================================================
-UNIQUE L2_CATEGORIES:
-============================================================
-1. adver_and_product
-2. attention_trafficsignal
-3. attribute_motion_multipedestrians
-4. attribute_motion_multivehicles
-5. attribute_motion_pedestrain
-6. attribute_motion_vehicle
-7. attribute_visual_trafficsignal
-8. book_map_poster
-9. calculate
-10. character identification
-11. color
-12. count
-13. diagram
-14. intention
-15. license
-16. object_count
-17. objects_identify
-18. person/attribute/color
-19. person/attribute/orientation
-20. person/counting
-21. phone_and_address
-22. position
-23. prediction_intention_ego
-24. prediction_intention_pedestrian
-25. prediction_intention_vehicle
-26. property
-27. relation_interaction_ego2pedestrain
-28. relation_interaction_ego2trafficsignal
-29. relation_interaction_ego2vehicle
-30. relation_interaction_other2other
-31. scene understanding
-32. table
-33. text_recog
-34. vehicle/attribute/color
-35. vehicle/attribute/orientation
-36. vehicle/counting
-37. vehicle/location
+9. Reasoning/OCR_with_Complex_Context
 
 ============================================================
 CATEGORY -> L2_CATEGORY MAPPING:
@@ -61,33 +21,33 @@ CATEGORY -> L2_CATEGORY MAPPING:
 📁 Perception/Autonomous_Driving:
    └── attribute_motion_multipedestrians
    └── attribute_motion_multivehicles
-   └── attribute_motion_pedestrain
+   └── attribute_motion_pedestrian
    └── attribute_motion_vehicle
    └── attribute_visual_trafficsignal
    └── object_count
    └── objects_identify
 
-📁 Perception/Diagram and Table:
+📁 Perception/Diagram_and_Table:
    └── diagram
    └── table
 
 📁 Perception/Monitoring:
-   └── person/attribute/color
-   └── person/attribute/orientation
-   └── person/counting
-   └── vehicle/attribute/color
-   └── vehicle/attribute/orientation
-   └── vehicle/counting
-   └── vehicle/location
+   └── person_attribute_color
+   └── person_attribute_orientation
+   └── person_counting
+   └── vehicle_attribute_color
+   └── vehicle_attribute_orientation
+   └── vehicle_counting
+   └── vehicle_location
 
-📁 Perception/OCR with Complex Context:
+📁 Perception/OCR_with_Complex_Context:
    └── adver_and_product
    └── book_map_poster
    └── license
    └── phone_and_address
    └── text_recog
 
-📁 Perception/Remote Sensing:
+📁 Perception/Remote_Sensing:
    └── color
    └── count
    └── position
@@ -97,12 +57,12 @@ CATEGORY -> L2_CATEGORY MAPPING:
    └── prediction_intention_ego
    └── prediction_intention_pedestrian
    └── prediction_intention_vehicle
-   └── relation_interaction_ego2pedestrain
+   └── relation_interaction_ego2pedestrian
    └── relation_interaction_ego2trafficsignal
    └── relation_interaction_ego2vehicle
    └── relation_interaction_other2other
 
-📁 Reasoning/Diagram and Table:
+📁 Reasoning/Diagram_and_Table:
    └── diagram
    └── table
 
@@ -111,7 +71,7 @@ CATEGORY -> L2_CATEGORY MAPPING:
    └── intention
    └── property
 
-📁 Reasoning/OCR with Complex Context:
+📁 Reasoning/OCR_with_Complex_Context:
    └── character identification
    └── scene understanding
 

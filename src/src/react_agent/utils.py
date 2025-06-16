@@ -12,6 +12,9 @@ from io import BytesIO
 from PIL import Image
 import asyncio
 
+from react_agent.state import HistoryRecord
+from typing import List
+
 def get_message_text(msg: BaseMessage) -> str:
     """Get the text content of a message from commercial model."""
 
@@ -36,8 +39,7 @@ def load_reasoning_model() -> ChatOllama:
         base_url="127.0.0.1:11439", # depend on ollama server (qwq)
         model="qwq", # reasoning model
         temperature=0.5,
-        tool_choice="vision_model"  # Forces the model to use one of the provided tools
-
+        # tool_choice="vision_model"  # Forces the model to use one of the provided tools
     )
 
     return model
@@ -135,46 +137,50 @@ class VLMPromptTools:
         return multimodal_content
 
 # NOTE: functions for reflection
-# reflection models
 from pydantic import BaseModel, Field
 
-class Reflection(BaseModel):
-    missing: str = Field(description="Critique of what is missing.")         # describes missing info
-    superfluous: str = Field(description="Critique of what is superfluous.") # describes excess info
+# TODO: maybe remove this
+# class Reflection(BaseModel):
+#     missing: str = Field(description="Critique of what is missing.")         # describes missing info
+#     superfluous: str = Field(description="Critique of what is superfluous.") # describes excess info
 
 class AnswerQuestion(BaseModel):
     """Defines the expected function output schema:
-        - answer: ~250 word detailed answer (str)
-        - reflection: Reflection object
-        - search_queries: list of query strings
+        - answer: ~50 word detailed answer (str)
+        - critique: a critique on the answer
+        - query: a follow-up question
+        - reflection: a reflection object
+        - queries: a list of follow-up questions
     """
 
     answer: str = Field(description="~50 word detailed answer to the question.")
-    reflection: Reflection = Field(description="Your reflection on the initial answer.")
-    queries: list[str] = Field(
-        description="1 query for researching improvements to address the critique of your current answer."
-    )
+    critique: str = Field(description="Critique of what is missing or superfluous in the answer.")
+    query: str = Field(description="1 query for researching improvements to address the critique of your current answer.")
+    # reflection: Reflection = Field(description="Your reflection on the initial answer.") # using class Reflection
+    # queries: list[str] = Field(
+    #     description="3 queries for researching improvements to address the critique of your current answer."
+    # )
 
 class ReviseAnswer(AnswerQuestion):
     """Defines the expected function output schema:
-        - answer: ~50 word detailed answer to the question
-        - reflection: Reflection object
+        - answer: ~50 word detailed answer (str)
+        - critique: a critique on the answer
+        - query: a follow-up question
+        - reflection: a reflection object
+        - queries: a list of follow-up questions
         - references: list of citations for your updated answer
-        - search_queries: list of query strings
+
+    Note: It is a subset of the AnswerQuestion class
     """
 
-    answer: str = Field(description="~50 word detailed answer to the question.")
-    reflection: Reflection = Field(description="Your reflection on the revised answer.")
-    references: list[str] = Field(description="Citations for your revised answer.")
-    queries: list[str] = Field(
-        description="1 query for researching improvements to address the critique of your current answer."
-    )
-
-# NOTE: original prompt in ReviseAnswer
-"""Revise your original answer to your question. Provide an answer, reflection, 
-cite your reflection with references, and finally
-add search queries to improve the answer.
-"""
+    # answer: str = Field(description="~50 word detailed answer to the question.")
+    # critique: str = Field(description="Critique of what is missing or superfluous in the answer.")
+    # query: str = Field(description="1 query for researching improvements to address the critique of your current answer.")
+    # references: list[str] = Field(description="Citations for your revised answer.")
+    # reflection: Reflection = Field(description="Your reflection on the revised answer.")
+    # queries: list[str] = Field(
+    #     description="1 query for researching improvements to address the critique of your current answer."
+    # )
 
 class FinalAnswer(BaseModel):
     """Defines the expected function output schema:
@@ -183,3 +189,33 @@ class FinalAnswer(BaseModel):
 
     answer: str = Field(description="~50 word detailed answer to the question.")
 
+def format_history_for_prompt(history: List[HistoryRecord]) -> str:
+    """Formats the structured history into a string for the LLM prompt."""
+
+    if not history:
+        return "No history yet."
+
+    formatted_history = ""
+    # The first record is always the initial draft
+    init_record = history[0]
+    formatted_history += "--- Initial Draft ---\n"
+    formatted_history += f"Image Caption: {init_record.visual_info}\n"
+    formatted_history += f"Initial Answer based on Caption: {init_record.answer}\n"
+    formatted_history += f"Critique of Initial Answer: {init_record.critique}\n"
+    formatted_history += "---------------------\n"
+
+    # Subsequent records are from the revision loops
+    if len(history) > 1:
+        for i, record in enumerate(history[1:]):
+            formatted_history += f"--- Revised Draft {i+1} ---\n"
+            formatted_history += f"Question to Vision Models: {record.query}\n"
+            formatted_history += "Visual Models Responses:\n"
+            for model, response in record.visual_info.items():
+                formatted_history += f"  - {model}: {response}\n"
+            formatted_history += f"Revised Answer: {record.answer}\n"
+            formatted_history += f"Critique of Revision: {record.critique}\n"
+            # if record.references:
+            #     formatted_history += f"References: {', '.join(record.references)}\n"
+            formatted_history += "---------------------\n"
+            
+    return formatted_history

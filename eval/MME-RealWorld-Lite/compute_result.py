@@ -88,6 +88,7 @@ def compute_result(args, argw, results_file, eval_results_file):
         logger.info("Saving result summary to wandb")
         wandb.log(
             {
+                "category": argw.category,
                 "total_questions": total_count,
                 "correct": correct_count,
                 "e_choices": e_choice_count,

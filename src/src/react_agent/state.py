@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Sequence
+from typing import Sequence, Any
 
 from langchain_core.messages import AnyMessage
 from langgraph.graph import add_messages
@@ -37,6 +37,14 @@ class InputState:
     updating by ID to maintain an "append-only" state unless a message with the same ID is provided.
     """
 
+@dataclass
+class HistoryRecord:
+    """Represents the complete, archived data for a single iteration."""
+    visual_info: dict[str, Any] = field(default_factory=dict)
+    query: str = ""
+    answer: str = ""
+    critique: str = ""
+    # references: list[str] = field(default_factory=list)
 
 @dataclass
 class State(InputState):
@@ -52,6 +60,18 @@ class State(InputState):
     This is a 'managed' variable, controlled by the state machine rather than user code.
     It is set to 'True' when the step count reaches recursion_limit - 1.
     """
+
+    # --- Fields for the CURRENT iteration ---
+    # These are temporary holders for data generated in one loop
+    current_visual_info: dict[str, Any] = field(default_factory=dict)
+    current_query: str = ""
+    current_answer: str = ""
+    current_critique: str = ""
+    # current_references: list[str] = field(default_factory=list)
+
+    # --- The main history list ---
+    # This now stores a list of our structured HistoryRecord objects
+    history: list[HistoryRecord] = field(default_factory=list)
 
     # Additional attributes can be added here as needed.
     # Common examples include:

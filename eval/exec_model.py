@@ -50,9 +50,9 @@ def query_agent(args, usr_msg: str, img_path: str) -> str:
         formatted_data = json.dumps(chunk.data, indent=2)
         logger.info(f"Event data:\n{formatted_data}\n")
     
-    # Extract the last response from spokesman
-    last_response = chunk.data["spokesman"]["messages"][-1]["content"]
-    logger.info("----- Extracted last response of spokesman -----")
+    # Extract the final response
+    last_response = chunk.data["final_response"]["messages"][-1]["content"]
+    logger.info("----- Extracted final response of agent -----")
     logger.info(last_response)
     logger.info("------------------------------------------------")
 
